@@ -23,16 +23,18 @@ build {
       "sudo chown root:root nomad",
       "sudo mv nomad /usr/local/bin/",
       "nomad version",
+      "sudo touch /etc/systemd/system/nomad.service",
       "sudo mkdir --parents /opt/nomad",
       "sudo useradd --system --home /etc/nomad.d --shell /bin/false nomad",
       "sudo mkdir --parents /etc/nomad.d",
       "sudo chmod 700 /etc/nomad.d",
       "sudo touch /etc/nomad.d/nomad.hcl",
+      "sudo touch /etc/nomad.d/client.hcl",
     ]
   }
   provisioner "file" {
     source      = "nomad.service"
-    destination = "/etc/systemd/system/"
+    destination = "/tmp/"
   }
   provisioner "file" {
     source      = "nomad.hcl"
@@ -41,5 +43,10 @@ build {
   provisioner "file" {
     source      = "client.hcl"
     destination = "/etc/nomad.d/"
+  }
+  provisioner "shell" {
+    inline = [
+      "sudo mv /tmp/nomad.service /etc/systemd/system/nomad.service",
+    ]
   }
 }
