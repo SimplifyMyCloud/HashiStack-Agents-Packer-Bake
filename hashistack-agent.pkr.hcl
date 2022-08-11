@@ -5,6 +5,7 @@ source "googlecompute" "hashistack-agent" {
   project_id              = "simplifymycloud-dev"
   source_image_family     = "debian-11"
   ssh_username            = "packer"
+  use_os_login            = true
   zone                    = "us-west1-c"
   subnetwork              = "smc-dev-subnet-01"
   image_name              = "hashistack-agent"
