@@ -9,7 +9,7 @@ source "googlecompute" "hashistack-agent" {
   subnetwork              = "smc-dev-subnet-01"
   image_name              = "hashistack-agent"
   image_description       = "HashiStack Agent, Nomad + Consul"
-  image_storage_locations = "us-west1"
+  image_storage_locations = ["us-west1"]
 }
 
 build {
