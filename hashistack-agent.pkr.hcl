@@ -2,14 +2,14 @@
 # server that relies on GCP Service Accounts for all functions
 # like auto-scaling & auto-healing.
 source "googlecompute" "hashistack-agent" {
-  project_id             = "simplifymycloud-dev"
-  source_image_family    = "debian_11"
-  ssh_username           = "packer"
-  zone                   = "us-west1-c"
-  subnetwork             = "smc-dev-subnet-01"
-  image_name             = "hashistack-agent"
-  image_description      = "HashiStack Agent, Nomad + Consul"
-  image_storage_location = "us-west1"
+  project_id              = "simplifymycloud-dev"
+  source_image_family     = "debian_11"
+  ssh_username            = "packer"
+  zone                    = "us-west1-c"
+  subnetwork              = "smc-dev-subnet-01"
+  image_name              = "hashistack-agent"
+  image_description       = "HashiStack Agent, Nomad + Consul"
+  image_storage_locations = "us-west1"
 }
 
 build {
@@ -29,15 +29,15 @@ build {
     ]
   }
   provisioner "file" {
-    source = "nomad.service"
+    source      = "nomad.service"
     destination = "/etc/systemd/system/"
   }
   provisioner "file" {
-    source = "nomad.hcl"
+    source      = "nomad.hcl"
     destination = "/etc/nomad.d/"
   }
   provisioner "file" {
-    source = "client.hcl"
+    source      = "client.hcl"
     destination = "/etc/nomad.d/"
   }
 }
