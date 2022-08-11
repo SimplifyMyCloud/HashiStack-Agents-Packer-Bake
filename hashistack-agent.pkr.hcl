@@ -25,8 +25,8 @@ build {
       "nomad version",
       "sudo touch /etc/systemd/system/nomad.service",
       "sudo mkdir --parents /opt/nomad",
-      "sudo useradd --system --home /etc/nomad.d --shell /bin/false nomad",
       "sudo mkdir --parents /etc/nomad.d",
+      "sudo useradd --system --home /etc/nomad.d --shell /bin/false nomad",
       "sudo chmod 700 /etc/nomad.d",
       "sudo touch /etc/nomad.d/nomad.hcl",
       "sudo touch /etc/nomad.d/client.hcl",
@@ -49,9 +49,9 @@ build {
       "sudo mv /tmp/nomad.service /etc/systemd/system/nomad.service",
       "sudo chown root:root /etc/systemd/system/nomad.service",
       "sudo mv /tmp/nomad.hcl /etc/nomad.d/nomad.hcl",
-      "sudo chown root:root /etc/nomad.d/nomad.hcl",
+      "sudo chown nomad:nomad /etc/nomad.d/nomad.hcl",
       "sudo mv /tmp/client.hcl /etc/nomad.d/client.hcl",
-      "sudo chown root:root /etc/nomad.d/client.hcl",
+      "sudo chown nomad:nomad /etc/nomad.d/client.hcl",
     ]
   }
 }
