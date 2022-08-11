@@ -3,7 +3,7 @@
 # like auto-scaling & auto-healing.
 source "googlecompute" "hashistack-agent" {
   project_id              = "simplifymycloud-dev"
-  source_image_family     = "debian_11"
+  source_image_family     = "debian-11"
   ssh_username            = "packer"
   zone                    = "us-west1-c"
   subnetwork              = "smc-dev-subnet-01"
