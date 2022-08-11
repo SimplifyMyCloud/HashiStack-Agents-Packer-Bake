@@ -47,8 +47,11 @@ build {
   provisioner "shell" {
     inline = [
       "sudo mv /tmp/nomad.service /etc/systemd/system/nomad.service",
+      "sudo chown root:root /etc/systemd/system/nomad.service",
       "sudo mv /tmp/nomad.hcl /etc/nomad.d/nomad.hcl",
+      "sudo chown root:root /etc/nomad.d/nomad.hcl",
       "sudo mv /tmp/client.hcl /etc/nomad.d/client.hcl",
+      "sudo chown root:root /etc/nomad.d/client.hcl",
     ]
   }
 }
