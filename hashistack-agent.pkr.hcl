@@ -38,15 +38,17 @@ build {
   }
   provisioner "file" {
     source      = "nomad.hcl"
-    destination = "/etc/nomad.d/"
+    destination = "/tmp/"
   }
   provisioner "file" {
     source      = "client.hcl"
-    destination = "/etc/nomad.d/"
+    destination = "/tmp/"
   }
   provisioner "shell" {
     inline = [
       "sudo mv /tmp/nomad.service /etc/systemd/system/nomad.service",
+      "sudo mv /tmp/nomad.hcl /etc/nomad.d/nomad.hcl",
+      "sudo mv /tmp/client.hcl /etc/nomad.d/client.hcl",
     ]
   }
 }
