@@ -15,7 +15,7 @@ source "googlecompute" "hashistack-agent" {
 build {
   sources = ["sources.googlecompute.hashistack-agent"]
   provisioner "shell" {
-    scripts = [
+    inline = [
       "curl --silent --remote-name https://releases.hashicorp.com/nomad/1.1.0/nomad_1.1.0_linux_amd64.zip",
       "unzip nomad_1.1.0_linux_amd64.zip",
       "sudo chown root:root nomad",
