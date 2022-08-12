@@ -77,7 +77,7 @@ build {
     ]
   }
   provisioner "file" {
-    source      = "nomad.service"
+    source      = "consul.service"
     destination = "/tmp/"
   }
   provisioner "file" {
