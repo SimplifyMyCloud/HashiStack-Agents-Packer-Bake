@@ -89,7 +89,7 @@ build {
       "sudo mv /tmp/consul.service /etc/systemd/system/consul.service",
       "sudo chown root:root /etc/systemd/system/consul.service",
       "sudo mv /tmp/consul.hcl /etc/consul.d/consul.hcl",
-      "sudo chown consul:consul /etc/nomad.d/consul.hcl",
+      "sudo chown consul:consul /etc/consul.d/consul.hcl",
       "sudo systemctl enable consul",
       "sudo systemctl start consul",
       "sudo systemctl status consul",
