@@ -16,7 +16,7 @@ source "googlecompute" "hashistack-agent" {
 
 build {
   sources = ["sources.googlecompute.hashistack-agent"]
-# HashiAgent - Nomad Agent Reciepe
+  # HashiAgent - Nomad Agent Reciepe
   provisioner "shell" {
     inline = [
       "curl --silent --remote-name https://releases.hashicorp.com/nomad/1.1.0/nomad_1.1.0_linux_amd64.zip",
@@ -55,8 +55,8 @@ build {
       "sudo chown nomad:nomad /etc/nomad.d/client.hcl",
     ]
   }
-# HashiAgent - Nomad Agent Reciepe - END
-# HashiAgent - Consul Agent Reciepe
+  # HashiAgent - Nomad Agent Reciepe - END
+  # HashiAgent - Consul Agent Reciepe
   provisioner "shell" {
     inline = [
       "curl --silent --remote-name https://releases.hashicorp.com/consul/1.8.0/consul_1.8.0_linux_amd64.zip",
@@ -95,5 +95,5 @@ build {
       "sudo systemctl status consul",
     ]
   }
-# HashiAgent - Consul Agent Reciepe - END
+  # HashiAgent - Consul Agent Reciepe - END
 }
