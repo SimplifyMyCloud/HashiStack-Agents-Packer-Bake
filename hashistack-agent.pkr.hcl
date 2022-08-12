@@ -57,4 +57,43 @@ build {
   }
 # HashiAgent - Nomad Agent Reciepe - END
 # HashiAgent - Consul Agent Reciepe
+  provisioner "shell" {
+    inline = [
+      "curl --silent --remote-name https://releases.hashicorp.com/consul/1.8.0/consul_1.8.0_linux_amd64.zip",
+      "curl --silent --remote-name https://releases.hashicorp.com/1.8.0/consul_1.8.0_SHA256SUMS",
+      "curl --silent --remote-name https://releases.hashicorp.com/1.8.0/consul_1.8.0_SHA256SUMS.sig",
+      "unzip consul_1.8.0_linux_amd64.zip",
+      "sudo chown root:root consul",
+      "sudo mv consul /usr/bin/",
+      "consul --version",
+      "sudo touch /etc/systemd/system/consul.service",
+      "sudo mkdir --parents /opt/consul",
+      "sudo mkdir --parents /etc/consul.d"
+      "sudo touch /etc/consul.d/consul.hcl",
+      "sudo chmod 640 /etc/consul.d/consul.hcl",
+      "sudo useradd --system --home /etc/consul.d --shell /bin/false consul",
+      "sudo chown --recursive consul:consul /opt/consul",
+      "sudo chown --recursive consul:consul /etc/consul.d",
+    ]
+  }
+  provisioner "file" {
+    source      = "nomad.service"
+    destination = "/tmp/"
+  }
+  provisioner "file" {
+    source      = "consul.hcl"
+    destination = "/tmp/"
+  }
+  provisioner "shell" {
+    inline = [
+      "sudo mv /tmp/consul.service /etc/systemd/system/consul.service",
+      "sudo chown root:root /etc/systemd/system/consul.service",
+      "sudo mv /tmp/consul.hcl /etc/consul.d/consul.hcl",
+      "sudo chown consul:consul /etc/nomad.d/consul.hcl",
+      "sudo systemctl enable consul",
+      "sudo systemctl start consul",
+      "sudo systemctl status consul",
+    ]
+  }
+# HashiAgent - Consul Agent Reciepe - END
 }
