@@ -106,7 +106,12 @@ build {
   }
   provisioner "file" {
     source      = "config.yaml"
-    destination = "/etc/google-cloud-ops-agent/"
+    destination = "/tmp/"
+  }
+  provisioner "shell" {
+    inline = [
+      "sudo mv /tmp/config.yaml /etc/google-cloud-ops-agent/config.yaml",
+    ]
   }
   # GCP - ops-agent reciepe - END
 }
