@@ -97,15 +97,14 @@ build {
   }
 # HashiAgent - consul agent reciepe - END
 # GCP - ops-agent reciepe
-  provisioner = "shell" {
+  provisioner "shell" {
     inline = [
       "curl -sSO https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh",
       "sudo bash add-google-cloud-ops-agent-repo.sh --also-install",
       "touch /etc/google-cloud-ops-agent/config.yaml",
     ]
   }
-
-  provisioner = "file" {
+  provisioner "file" {
     source = "config.yaml"
     destination = "/etc/google-cloud-ops-agent/"
   }
