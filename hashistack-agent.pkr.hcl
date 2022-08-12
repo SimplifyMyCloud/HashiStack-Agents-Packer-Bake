@@ -68,7 +68,7 @@ build {
       "consul --version",
       "sudo touch /etc/systemd/system/consul.service",
       "sudo mkdir --parents /opt/consul",
-      "sudo mkdir --parents /etc/consul.d"
+      "sudo mkdir --parents /etc/consul.d",
       "sudo touch /etc/consul.d/consul.hcl",
       "sudo chmod 640 /etc/consul.d/consul.hcl",
       "sudo useradd --system --home /etc/consul.d --shell /bin/false consul",
